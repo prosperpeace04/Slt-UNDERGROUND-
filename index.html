@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLT Underground — The Polytechnic Ibadan</title>
-  <meta name="description" content="Everything an SLT student at Poly Ibadan needs. From your first day to graduation day.">
+  <title>Admin Panel — SLT Underground</title>
   <style>
 /* ============================================================
    SLT UNDERGROUND — SHARED STYLESHEET
@@ -1156,254 +1155,190 @@ a { color: inherit; text-decoration: none; }
 
 </style>
   <style>
-    /* DNA pattern overlay for hero */
-    .hero { min-height: 65vh; }
-
-    /* Quick links section */
-    .quick-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-    @media (min-width: 480px) { .quick-grid { grid-template-columns: repeat(3, 1fr); } }
-
-    .quick-card {
-      background: var(--black-card);
-      border: 1px solid var(--black-border);
-      border-radius: 14px;
-      padding: 20px 16px;
-      text-align: center;
-      cursor: pointer;
-      transition: all var(--transition);
-      text-decoration: none;
-      display: block;
-    }
-    .quick-card:hover {
-      border-color: var(--orange);
-      transform: translateY(-4px);
-      background: rgba(232,101,10,0.07);
-    }
-    .quick-card .qc-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
-    .quick-card .qc-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.85rem;
-      color: var(--white);
-      margin-bottom: 4px;
-    }
-    .quick-card .qc-sub { font-size: 0.73rem; color: var(--white-dim); }
-
-    /* Stats row */
-    .stats-row {
-      display: flex;
-      gap: 0;
-      border: 1px solid var(--black-border);
-      border-radius: 14px;
-      overflow: hidden;
-      margin-bottom: 40px;
-    }
-    .stat-item {
-      flex: 1;
-      text-align: center;
-      padding: 20px 12px;
-      border-right: 1px solid var(--black-border);
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-num {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 1.6rem;
-      color: var(--orange);
-      letter-spacing: -0.03em;
-      display: block;
-    }
-    .stat-label { font-size: 0.73rem; color: var(--white-dim); }
-
-    /* Notice board */
-    .notice-board {
-      background: var(--black-card);
-      border: 1px solid var(--black-border);
-      border-left: 3px solid var(--orange);
-      border-radius: 10px;
-      padding: 18px 20px;
-      margin-bottom: 14px;
-    }
-    .notice-board h4 {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.88rem;
-      color: var(--white);
-      margin-bottom: 6px;
-    }
-    .notice-board p { font-size: 0.82rem; color: var(--white-dim); line-height: 1.6; }
-    .notice-date {
-      font-family: var(--font-mono);
-      font-size: 0.67rem;
-      color: var(--orange);
-      margin-bottom: 6px;
-    }
-
-    /* AI promo card */
-    .ai-promo {
-      background: linear-gradient(135deg, rgba(232,101,10,0.15), rgba(232,101,10,0.05));
-      border: 1px solid rgba(232,101,10,0.25);
-      border-radius: 16px;
-      padding: 28px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .ai-promo h3 {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 1.2rem;
-      color: var(--white);
-      letter-spacing: -0.02em;
-    }
-    .ai-promo p { font-size: 0.87rem; color: var(--white-dim); line-height: 1.7; }
+    .login-screen{position:fixed;inset:0;z-index:9999;background:var(--black);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:24px}
+    .login-box{background:var(--black-card);border:1px solid var(--black-border);border-radius:20px;padding:40px 32px;width:100%;max-width:380px;text-align:center}
+    .login-logo{font-family:var(--font-display);font-weight:800;font-size:1.5rem;color:var(--orange);margin-bottom:6px}
+    .login-sub{font-family:var(--font-mono);font-size:0.72rem;color:var(--white-dim);margin-bottom:28px;letter-spacing:0.05em}
+    .login-input{width:100%;background:var(--black);border:1px solid var(--black-border);border-radius:10px;padding:13px 16px;color:var(--white);font-family:var(--font-body);font-size:0.9rem;outline:none;transition:border-color var(--transition);text-align:center;letter-spacing:0.1em;margin-bottom:14px}
+    .login-input:focus{border-color:var(--orange)}
+    .login-btn{width:100%;background:var(--orange);border:none;border-radius:10px;padding:13px;color:var(--black);font-family:var(--font-display);font-weight:700;font-size:0.95rem;cursor:pointer;transition:all var(--transition)}
+    .login-btn:hover{background:var(--orange-light)}
+    .login-error{color:#ff4444;font-size:0.8rem;margin-top:10px;display:none}
+    .admin-wrap{max-width:750px;margin:0 auto;padding:0 20px 60px}
+    .upload-section{background:var(--black-card);border:1px solid var(--black-border);border-radius:16px;margin-bottom:24px;overflow:hidden}
+    .upload-section-header{background:rgba(232,101,10,0.08);border-bottom:1px solid var(--black-border);padding:18px 20px;display:flex;align-items:center;gap:12px}
+    .upload-section-header h3{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--white)}
+    .section-icon{font-size:1.5rem}
+    .upload-body{padding:20px}
+    .drop-zone{border:2px dashed rgba(232,101,10,0.35);border-radius:12px;padding:36px 20px;text-align:center;cursor:pointer;transition:all var(--transition);background:rgba(232,101,10,0.03);margin-bottom:18px}
+    .drop-zone:hover,.drop-zone.dragging{border-color:var(--orange);background:rgba(232,101,10,0.07)}
+    .dz-icon{font-size:2.5rem;display:block;margin-bottom:10px}
+    .drop-zone h4{font-family:var(--font-display);font-weight:700;font-size:0.95rem;color:var(--white);margin-bottom:5px}
+    .drop-zone p{font-size:0.78rem;color:var(--white-dim)}
+    .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+    .meta-input{width:100%;background:var(--black);border:1px solid var(--black-border);border-radius:8px;padding:10px 14px;color:var(--white);font-family:var(--font-body);font-size:0.85rem;outline:none;transition:border-color var(--transition)}
+    .meta-input:focus{border-color:var(--orange)}
+    .meta-input option{background:var(--black-mid)}
+    .pending-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+    .pending-item{background:var(--black);border:1px solid var(--black-border);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px}
+    .pending-icon{font-size:1.5rem;flex-shrink:0}
+    .pending-info{flex:1}
+    .pending-info h5{font-family:var(--font-display);font-weight:600;font-size:0.82rem;color:var(--white);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+    .pending-info p{font-size:0.72rem;color:var(--white-dim)}
+    .progress-bar-wrap{height:3px;background:var(--black-border);border-radius:2px;margin-top:5px}
+    .progress-bar{height:100%;width:0%;background:var(--orange);border-radius:2px;transition:width 0.4s ease}
+    .remove-file{background:none;border:1px solid rgba(255,68,68,0.3);color:rgba(255,68,68,0.6);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:0.72rem;transition:all var(--transition);flex-shrink:0}
+    .remove-file:hover{border-color:#ff4444;color:#ff4444}
+    .upload-btn{width:100%;background:var(--orange);border:none;border-radius:10px;padding:13px;color:var(--black);font-family:var(--font-display);font-weight:700;font-size:0.9rem;cursor:pointer;transition:all var(--transition);display:flex;align-items:center;justify-content:center;gap:8px}
+    .upload-btn:hover{background:var(--orange-light)}
+    .upload-btn:disabled{opacity:0.5;cursor:not-allowed}
+    .saved-section{margin-top:16px}
+    .saved-section-title{font-family:var(--font-mono);font-size:0.68rem;color:var(--orange);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
+    .saved-item{background:var(--black);border:1px solid var(--black-border);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;margin-bottom:8px}
+    .si-icon{font-size:1.4rem;flex-shrink:0}
+    .si-info{flex:1;min-width:0}
+    .si-name{font-family:var(--font-display);font-weight:600;font-size:0.82rem;color:var(--white);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .si-meta{font-size:0.72rem;color:var(--white-dim)}
+    .si-actions{display:flex;gap:6px;flex-shrink:0}
+    .view-file-btn{background:rgba(232,101,10,0.1);border:1px solid rgba(232,101,10,0.3);color:var(--orange);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:0.72rem;transition:all var(--transition);text-decoration:none;display:inline-block}
+    .view-file-btn:hover{background:var(--orange);color:var(--black)}
+    .del-file-btn{background:none;border:1px solid rgba(255,68,68,0.3);color:rgba(255,68,68,0.6);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:0.72rem;transition:all var(--transition)}
+    .del-file-btn:hover{border-color:#ff4444;color:#ff4444}
+    .empty-state{text-align:center;padding:20px;font-size:0.82rem;color:var(--white-dim)}
+    .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--orange);color:var(--black);padding:12px 24px;border-radius:10px;font-family:var(--font-display);font-weight:700;font-size:0.85rem;z-index:9999;opacity:0;transition:opacity 0.3s ease;pointer-events:none;white-space:nowrap}
+    .toast.show{opacity:1}
+    .toast.error{background:#ff4444;color:#fff}
+    .logout-btn{background:none;border:1px solid var(--black-border);color:var(--white-dim);padding:7px 14px;border-radius:8px;font-size:0.78rem;cursor:pointer;transition:all var(--transition);font-family:var(--font-body)}
+    .logout-btn:hover{border-color:#ff4444;color:#ff4444}
+    .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+    .stat-box{background:var(--black-card);border:1px solid var(--black-border);border-radius:12px;padding:16px;text-align:center}
+    .stat-num{font-family:var(--font-display);font-weight:800;font-size:1.6rem;color:var(--orange)}
+    .stat-lbl{font-size:0.72rem;color:var(--white-dim)}
   </style>
 </head>
 <body>
 
-  <!-- NAV INJECT -->
-  <div id="nav-inject"></div>
+<div class="login-screen" id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">💎 SLT Underground</div>
+    <div class="login-sub">ADMIN PANEL — AUTHORIZED ACCESS ONLY</div>
+    <input class="login-input" type="password" id="pwd-input" placeholder="Enter admin password" autocomplete="off">
+    <button class="login-btn" onclick="checkPassword()">Enter Admin Panel →</button>
+    <div class="login-error" id="login-error">Wrong password. Try again.</div>
+  </div>
+</div>
 
-  <main class="page-content">
+<div class="toast" id="toast"></div>
+<div id="nav-inject"></div>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-dna"></div>
-      <div class="hero-content">
-        <div class="hero-tag">The Polytechnic Ibadan &middot; Science Laboratory Technology</div>
-        <h1>Everything an SLT student needs. From your <em>first day</em> to graduation day.</h1>
-        <p>Notes, past questions, lab report books, GP calculator, and Prosper AI — all free, all in one place. Built by an ND2 student, for every SLT student at Poly Ibadan.</p>
-        <div class="hero-cta">
-          <a class="btn-primary" href="pages/notes.html">📚 View Notes</a>
-          <a class="btn-ghost" href="pages/past-questions.html">📝 Past Questions</a>
+<main class="page-content" id="admin-main" style="display:none">
+  <div class="page-header">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px">
+      <div>
+        <div class="section-label">Admin Panel</div>
+        <h1>Upload Center 🔐</h1>
+        <p>Upload files to Supabase cloud. Students see them instantly.</p>
+      </div>
+      <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+    </div>
+  </div>
+
+  <div class="admin-wrap">
+    <div class="stat-grid">
+      <div class="stat-box"><div class="stat-num" id="c-pq">0</div><div class="stat-lbl">Past Questions</div></div>
+      <div class="stat-box"><div class="stat-num" id="c-notes">0</div><div class="stat-lbl">ND2 Notes</div></div>
+      <div class="stat-box"><div class="stat-num" id="c-rb">0</div><div class="stat-lbl">Report Books</div></div>
+    </div>
+
+    <!-- PAST QUESTIONS -->
+    <div class="upload-section">
+      <div class="upload-section-header">
+        <span class="section-icon">📝</span><h3>Upload Past Questions</h3>
+      </div>
+      <div class="upload-body">
+        <div class="drop-zone" id="dz-pq" onclick="document.getElementById('fi-pq').click()">
+          <span class="dz-icon">📂</span><h4>Drag & Drop or Click to Browse</h4><p>JPG, PNG, PDF</p>
+          <input type="file" id="fi-pq" style="display:none" accept=".jpg,.jpeg,.png,.pdf" multiple>
+        </div>
+        <div class="pending-list" id="pl-pq"></div>
+        <div class="meta-grid">
+          <input class="meta-input" id="pq-subject" type="text" placeholder="Subject Name">
+          <input class="meta-input" id="pq-code" type="text" placeholder="Course Code">
+        </div>
+        <div class="meta-grid">
+          <select class="meta-input" id="pq-level"><option value="">Level</option><option value="nd1">ND1</option><option value="nd2">ND2</option></select>
+          <input class="meta-input" id="pq-year" type="text" placeholder="Year e.g. 2023/2024">
+        </div>
+        <select class="meta-input" id="pq-semester" style="margin-bottom:14px;width:100%">
+          <option value="">Semester</option><option value="first">First Semester</option><option value="second">Second Semester</option>
+        </select>
+        <button class="upload-btn" id="btn-pq" onclick="doUpload('pq')">☁️ Upload to Cloud</button>
+        <div class="saved-section">
+          <div class="saved-section-title"><span>Uploaded Past Questions</span><span id="lbl-pq" style="color:var(--white-dim)">0</span></div>
+          <div id="saved-pq"></div>
         </div>
       </div>
-      <div class="wave-divider">
-        <svg viewBox="0 0 1200 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0,40 C300,80 900,0 1200,40 L1200,80 L0,80 Z" fill="#080808"/>
-        </svg>
-      </div>
-    </section>
+    </div>
 
-    <!-- STATS -->
-    <section class="section" style="padding-bottom:0">
-      <div class="stats-row">
-        <div class="stat-item">
-          <span class="stat-num">6+</span>
-          <span class="stat-label">Courses</span>
+    <!-- ND2 NOTES -->
+    <div class="upload-section">
+      <div class="upload-section-header">
+        <span class="section-icon">📚</span><h3>Upload ND2 Notes</h3>
+      </div>
+      <div class="upload-body">
+        <div class="drop-zone" id="dz-notes" onclick="document.getElementById('fi-notes').click()">
+          <span class="dz-icon">📂</span><h4>Drag & Drop or Click to Browse</h4><p>PDF, PPTX, DOCX</p>
+          <input type="file" id="fi-notes" style="display:none" accept=".pdf,.pptx,.docx,.ppt,.doc" multiple>
         </div>
-        <div class="stat-item">
-          <span class="stat-num">22</span>
-          <span class="stat-label">Lab Reports</span>
+        <div class="pending-list" id="pl-notes"></div>
+        <div class="meta-grid">
+          <input class="meta-input" id="notes-course" type="text" placeholder="Course Name">
+          <input class="meta-input" id="notes-code" type="text" placeholder="Course Code">
         </div>
-        <div class="stat-item">
-          <span class="stat-num">💎</span>
-          <span class="stat-label">Prosper AI</span>
+        <select class="meta-input" id="notes-semester" style="margin-bottom:14px;width:100%">
+          <option value="">Semester</option><option value="first">First Semester</option><option value="second">Second Semester</option>
+        </select>
+        <button class="upload-btn" id="btn-notes" onclick="doUpload('notes')">☁️ Upload to Cloud</button>
+        <div class="saved-section">
+          <div class="saved-section-title"><span>Uploaded Notes</span><span id="lbl-notes" style="color:var(--white-dim)">0</span></div>
+          <div id="saved-notes"></div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- QUICK LINKS -->
-    <section class="section">
-      <div class="section-label">Quick Access</div>
-      <h2 class="section-title">What do you need?</h2>
-      <p class="section-sub">Jump straight to what you are looking for. Everything is organized and ready.</p>
-
-      <div class="quick-grid">
-        <a class="quick-card" href="pages/notes.html?course=stc211">
-          <span class="qc-icon">🧪</span>
-          <div class="qc-title">STC 211 Notes</div>
-          <div class="qc-sub">Inorganic Chemistry II</div>
-        </a>
-        <a class="quick-card" href="pages/notes.html?course=stc212">
-          <span class="qc-icon">🔭</span>
-          <div class="qc-title">STC 212 Notes</div>
-          <div class="qc-sub">Analytical Chemistry</div>
-        </a>
-        <a class="quick-card" href="pages/notes.html?course=stp211">
-          <span class="qc-icon">⚡</span>
-          <div class="qc-title">STP 211 Notes</div>
-          <div class="qc-sub">Electronics</div>
-        </a>
-        <a class="quick-card" href="pages/notes.html?course=micro">
-          <span class="qc-icon">🦠</span>
-          <div class="qc-title">Microbiology</div>
-          <div class="qc-sub">Control of Microorganisms</div>
-        </a>
-        <a class="quick-card" href="pages/report-books.html?sub=biochem">
-          <span class="qc-icon">🔬</span>
-          <div class="qc-title">Report Books</div>
-          <div class="qc-sub">Biochemistry, Genetics, Ecology</div>
-        </a>
-        <a class="quick-card" href="pages/gp-calculator.html">
-          <span class="qc-icon">🎓</span>
-          <div class="qc-title">GP Calculator</div>
-          <div class="qc-sub">Poly Ibadan grading scale</div>
-        </a>
-        <a class="quick-card" href="pages/past-questions.html">
-          <span class="qc-icon">📝</span>
-          <div class="qc-title">Past Questions</div>
-          <div class="qc-sub">ND1 and ND2</div>
-        </a>
-        <a class="quick-card" href="pages/brochure.html">
-          <span class="qc-icon">📋</span>
-          <div class="qc-title">SLT Brochure</div>
-          <div class="qc-sub">History, careers, admission</div>
-        </a>
-        <a class="quick-card" href="pages/timetable.html">
-          <span class="qc-icon">📅</span>
-          <div class="qc-title">Timetable</div>
-          <div class="qc-sub">ND1 and ND2 2025/2026</div>
-        </a>
+    <!-- REPORT BOOKS -->
+    <div class="upload-section">
+      <div class="upload-section-header">
+        <span class="section-icon">🔬</span><h3>Upload Report Books</h3>
       </div>
-    </section>
-
-    <!-- PROSPER AI PROMO -->
-    <section class="section" style="padding-top:0">
-      <div class="ai-promo">
-        <div>
-          <div class="section-label">Exclusive Feature</div>
-          <h3>💎 Prosper AI is built into this site</h3>
+      <div class="upload-body">
+        <div class="drop-zone" id="dz-rb" onclick="document.getElementById('fi-rb').click()">
+          <span class="dz-icon">📂</span><h4>Drag & Drop or Click to Browse</h4><p>PDF, DOCX</p>
+          <input type="file" id="fi-rb" style="display:none" accept=".pdf,.docx,.doc" multiple>
         </div>
-        <p>Ask any science question, get step by step exam explanations, understand your course content deeper than your textbook ever explained it. Built specifically for SLT students at Poly Ibadan. Modes include /Godmode, /L99 and /ghostmode.</p>
-        <a class="btn-primary" href="pages/prosper-ai.html" style="align-self:flex-start">Talk to Prosper AI →</a>
+        <div class="pending-list" id="pl-rb"></div>
+        <div class="meta-grid">
+          <select class="meta-input" id="rb-subject">
+            <option value="">Subject</option>
+            <option value="biochemistry">Biochemistry (STC 222)</option>
+            <option value="genetics">Genetics (STB 221)</option>
+            <option value="ecology">Ecology (STB 222)</option>
+          </select>
+          <input class="meta-input" id="rb-experiment" type="text" placeholder="Experiment Title">
+        </div>
+        <button class="upload-btn" id="btn-rb" onclick="doUpload('rb')">☁️ Upload to Cloud</button>
+        <div class="saved-section">
+          <div class="saved-section-title"><span>Uploaded Report Books</span><span id="lbl-rb" style="color:var(--white-dim)">0</span></div>
+          <div id="saved-rb"></div>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <!-- NOTICE BOARD -->
-    <section class="section" style="padding-top:0">
-      <div class="section-label">Notice Board</div>
-      <h2 class="section-title">Latest Updates</h2>
+  </div>
+</main>
 
-      <div class="notice-board">
-        <div class="notice-date">May 2026</div>
-        <h4>SLT Underground Launched</h4>
-        <p>This platform is now live. Notes for STC 211, STC 212, STP 211, Microbiology, Excel and Research are available. More content being added.</p>
-      </div>
-
-      <div class="notice-board">
-        <div class="notice-date">2025/2026 Session</div>
-        <h4>ND2 Second Semester Timetable</h4>
-        <p>Venue is Sewage Hall 2. Check the timetable page for your full weekly schedule. Tentative, subject to change.</p>
-      </div>
-
-      <div class="notice-board">
-        <div class="notice-date">Reminder</div>
-        <h4>Minimum Attendance</h4>
-        <p>You need at least 70% attendance per semester to sit for exams. Do not miss lectures without a valid reason.</p>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER INJECT -->
-  <div id="footer-inject"></div>
-
-  <script>
+<div id="footer-inject"></div>
+<script>
 /* ============================================================
    SLT UNDERGROUND — CONFIGURATION
    Supabase, Groq, Gemini keys and shared config
@@ -1966,6 +1901,151 @@ document.addEventListener('DOMContentLoaded', () => {
   initFilterBtns();
 });
 
+</script>
+<script>
+// AUTH
+function checkPassword(){
+  const v=document.getElementById('pwd-input').value;
+  if(v===SLT_CONFIG.admin.password){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('admin-main').style.display='block';
+    sessionStorage.setItem('slt_admin','1');
+    loadAll();
+  } else {
+    document.getElementById('login-error').style.display='block';
+    document.getElementById('pwd-input').value='';
+  }
+}
+document.getElementById('pwd-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkPassword();});
+function logout(){sessionStorage.removeItem('slt_admin');location.reload();}
+if(sessionStorage.getItem('slt_admin')==='1'){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('admin-main').style.display='block';
+  setTimeout(loadAll,400);
+}
+
+// TOAST
+function showToast(msg,err=false){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast show'+(err?' error':'');
+  setTimeout(()=>t.className='toast',3000);
+}
+
+// PENDING FILES
+const pending={pq:[],notes:[],rb:[]};
+
+function setupDZ(dzId,fiId,type){
+  const dz=document.getElementById(dzId),fi=document.getElementById(fiId);
+  fi.addEventListener('change',e=>addFiles(type,e.target.files));
+  dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('dragging');});
+  dz.addEventListener('dragleave',()=>dz.classList.remove('dragging'));
+  dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('dragging');addFiles(type,e.dataTransfer.files);});
+}
+setupDZ('dz-pq','fi-pq','pq');
+setupDZ('dz-notes','fi-notes','notes');
+setupDZ('dz-rb','fi-rb','rb');
+
+function addFiles(type,files){
+  const list=document.getElementById('pl-'+type);
+  Array.from(files).forEach(file=>{
+    if(pending[type].find(f=>f.name===file.name))return;
+    pending[type].push(file);
+    const ext=file.name.split('.').pop().toLowerCase();
+    const icon=ext==='pdf'?'📄':ext==='pptx'||ext==='ppt'?'📊':ext==='docx'||ext==='doc'?'📝':'🖼️';
+    const safe=file.name.replace(/\W/g,'_');
+    const div=document.createElement('div');
+    div.className='pending-item'; div.id='pf-'+type+'-'+safe;
+    div.innerHTML=`<div class="pending-icon">${icon}</div>
+      <div class="pending-info"><h5>${file.name}</h5><p>${(file.size/1024).toFixed(0)} KB</p>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="pb-${type}-${safe}"></div></div></div>
+      <button class="remove-file" onclick="removeFile('${type}','${file.name}')">✕</button>`;
+    list.appendChild(div);
+  });
+}
+
+function removeFile(type,name){
+  pending[type]=pending[type].filter(f=>f.name!==name);
+  const el=document.getElementById('pf-'+type+'-'+name.replace(/\W/g,'_'));
+  if(el)el.remove();
+}
+
+async function doUpload(type){
+  const files=pending[type];
+  if(!files.length){showToast('No files selected!',true);return;}
+  const bucketMap={pq:'past-questions',notes:'nd2-notes',rb:'report-books'};
+  const bucket=bucketMap[type];
+  const btn=document.getElementById('btn-'+type);
+  btn.disabled=true; btn.textContent='⏳ Uploading...';
+
+  let meta={};
+  if(type==='pq') meta={subject:document.getElementById('pq-subject').value||'Past Question',code:document.getElementById('pq-code').value,level:document.getElementById('pq-level').value,year:document.getElementById('pq-year').value,semester:document.getElementById('pq-semester').value};
+  else if(type==='notes') meta={course:document.getElementById('notes-course').value||'Note',code:document.getElementById('notes-code').value,semester:document.getElementById('notes-semester').value};
+  else meta={subject:document.getElementById('rb-subject').value,experiment:document.getElementById('rb-experiment').value};
+
+  let ok=0;
+  for(const file of files){
+    const safeName=Date.now()+'_'+file.name.replace(/\s+/g,'_');
+    const pbId='pb-'+type+'-'+file.name.replace(/\W/g,'_');
+    const pb=document.getElementById(pbId);
+    if(pb)pb.style.width='50%';
+    try{
+      const url=await supabaseUpload(bucket,file,safeName);
+      const index=JSON.parse(localStorage.getItem('slt_'+type)||'[]');
+      index.push({...meta,fileName:safeName,url,name:file.name,date:new Date().toLocaleDateString(),size:(file.size/1024).toFixed(0)+' KB'});
+      localStorage.setItem('slt_'+type,JSON.stringify(index));
+      if(pb)pb.style.width='100%';
+      ok++;
+    } catch(err){
+      console.error(err);
+      if(pb){pb.style.width='100%';pb.style.background='#ff4444';}
+      showToast('Failed: '+file.name,true);
+    }
+  }
+  pending[type]=[];
+  document.getElementById('pl-'+type).innerHTML='';
+  btn.disabled=false; btn.innerHTML='☁️ Upload to Cloud';
+  if(ok>0)showToast('✅ '+ok+' file(s) uploaded!');
+  renderSaved(type); updateCounts();
+}
+
+function renderSaved(type){
+  const data=JSON.parse(localStorage.getItem('slt_'+type)||'[]');
+  const container=document.getElementById('saved-'+type);
+  const lbl=document.getElementById('lbl-'+type);
+  lbl.textContent=data.length+' file(s)';
+  if(!data.length){container.innerHTML='<div class="empty-state">No files uploaded yet.</div>';return;}
+  container.innerHTML=data.map((item,i)=>{
+    const url=item.url||'';
+    const ext=url.split('.').pop().toLowerCase();
+    const icon=ext==='pdf'?'📄':ext==='pptx'||ext==='ppt'?'📊':ext==='docx'||ext==='doc'?'📝':'🖼️';
+    const title=item.subject||item.course||item.experiment||item.name||'File';
+    const sub=[item.code,item.level&&item.level.toUpperCase(),item.year,item.semester&&(item.semester+' sem'),item.date].filter(Boolean).join(' · ');
+    return `<div class="saved-item">
+      <div class="si-icon">${icon}</div>
+      <div class="si-info"><div class="si-name">${title}</div><div class="si-meta">${sub}</div></div>
+      <div class="si-actions">
+        <a class="view-file-btn" href="${url}" target="_blank">View</a>
+        <button class="del-file-btn" onclick="delFile('${type}',${i})">Delete</button>
+      </div></div>`;
+  }).join('');
+}
+
+function delFile(type,i){
+  if(!confirm('Delete this file?'))return;
+  const data=JSON.parse(localStorage.getItem('slt_'+type)||'[]');
+  data.splice(i,1);
+  localStorage.setItem('slt_'+type,JSON.stringify(data));
+  renderSaved(type); updateCounts();
+  showToast('Deleted.');
+}
+
+function loadAll(){renderSaved('pq');renderSaved('notes');renderSaved('rb');updateCounts();}
+
+function updateCounts(){
+  document.getElementById('c-pq').textContent=JSON.parse(localStorage.getItem('slt_pq')||'[]').length;
+  document.getElementById('c-notes').textContent=JSON.parse(localStorage.getItem('slt_notes')||'[]').length;
+  document.getElementById('c-rb').textContent=JSON.parse(localStorage.getItem('slt_rb')||'[]').length;
+}
 </script>
 </body>
 </html>
